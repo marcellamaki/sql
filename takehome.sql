@@ -46,3 +46,15 @@ LEFT JOIN countrylanguage on country.code = countrylanguage.countrycode WHERE co
 
 15. 
 DELETE FROM city WHERE countrycode = (SELECT code FROM country WHERE name = 'Canada')
+
+16. 
+DELETE FROM countrylanguage
+DELETE * FROM countrylanguage
+
+17. 
+ALTER TABLE city
+ADD indepyear year;
+
+UPDATE city 
+SET indepyear = country.indepyear
+FROM city INNER JOIN country on city.countrycode = country.code;
