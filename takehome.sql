@@ -30,3 +30,19 @@ LEFT JOIN city on countrylanguage.countrycode = city.countrycode WHERE language 
 SELECT name FROM city LEFT JOIN countrylanguage on city.countrycode = countrylanguage.countrycode WHERE language = 'Spanish' AND IsOfficial ='T' ORDER BY population ASC LIMIT 1
 
 
+11. 
+SELECT region, SUM(population) FROM country GROUP BY region HAVING SUM(population) > 500000000
+
+12. 
+SELECT country.name FROM country
+LEFT JOIN city on city.countrycode = country.code WHERE city.name IS NULL
+
+13. 
+SELECT name FROM country WHERE length(name) = (SELECT max(length(name)) FROM country);
+
+14.
+SELECT language, (percentage * country.population * .01) FROM country
+LEFT JOIN countrylanguage on country.code = countrylanguage.countrycode WHERE code = (SELECT code FROM country WHERE name = 'Switzerland')
+
+15. 
+DELETE FROM city WHERE countrycode = (SELECT code FROM country WHERE name = 'Canada')
